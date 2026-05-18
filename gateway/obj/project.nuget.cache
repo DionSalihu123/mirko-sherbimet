@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "nJZ6MpF2hzk=",
+  "success": true,
+  "projectFilePath": "/home/dion/mikro_sherbimet/gateway/gateway.csproj",
+  "expectedPackageFiles": [
+    "/home/dion/.nuget/packages/system.io.hashing/8.0.0/system.io.hashing.8.0.0.nupkg.sha512",
+    "/home/dion/.nuget/packages/yarp.reverseproxy/2.3.0/yarp.reverseproxy.2.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}
