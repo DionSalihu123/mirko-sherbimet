@@ -131,3 +131,4 @@
 /home/dion/mikro_sherbimet/auth-service/bin/Debug/net9.0/Swashbuckle.AspNetCore.Swagger.dll
 /home/dion/mikro_sherbimet/auth-service/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /home/dion/mikro_sherbimet/auth-service/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
+/home/dion/mikro_sherbimet/auth-service/obj/Debug/net9.0/auth-service.sourcelink.json
