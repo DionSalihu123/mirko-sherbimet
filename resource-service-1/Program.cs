@@ -4,10 +4,10 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// OpenAPI (optional)
 builder.Services.AddOpenApi();
 
+// JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -30,7 +30,7 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// OpenAPI UI
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -41,28 +41,18 @@ app.UseAuthorization();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+// PUBLIC endpoint (no token needed)
+app.MapGet("/public", () =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    return Results.Ok("This is public data");
+});
 
-app.MapGet("/weatherforecast", () =>
+// SECURE endpoint (needs JWT token)
+app.MapGet("/secure", (HttpContext ctx) =>
 {
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+    var user = ctx.User.Identity?.Name ?? "unknown";
+    return Results.Ok($"Hello {user}, you accessed a secure endpoint!");
 })
-.WithName("GetWeatherForecast");
+.RequireAuthorization();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
