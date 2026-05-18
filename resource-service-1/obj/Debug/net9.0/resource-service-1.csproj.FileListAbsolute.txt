@@ -31,3 +31,12 @@
 /home/dion/mikro_sherbimet/resource-service-1/obj/Debug/net9.0/resource-service-1.pdb
 /home/dion/mikro_sherbimet/resource-service-1/obj/Debug/net9.0/resource-service-1.genruntimeconfig.cache
 /home/dion/mikro_sherbimet/resource-service-1/obj/Debug/net9.0/ref/resource-service-1.dll
+/home/dion/mikro_sherbimet/resource-service-1/obj/Debug/net9.0/resource-service-1.sourcelink.json
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.IdentityModel.Logging.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
+/home/dion/mikro_sherbimet/resource-service-1/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
