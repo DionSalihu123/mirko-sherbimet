@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// OpenAPI (optional)
-builder.Services.AddOpenApi();
-
-// JWT Authentication
+// JWT AUTH
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -23,9 +19,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
-            ),
-
-            NameClaimType = ClaimTypes.NameIdentifier
+            )
         };
     });
 
@@ -33,27 +27,23 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
-// -------------------- PUBLIC ENDPOINT --------------------
+// PUBLIC
 app.MapGet("/public", () =>
 {
     return Results.Ok("Resource Service 2 - Public Data");
 });
 
-// -------------------- SECURE ENDPOINT --------------------
+// SECURE
 app.MapGet("/secure", (HttpContext ctx) =>
 {
-    var userId = ctx.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "unknown";
-    var email = ctx.User.FindFirst(ClaimTypes.Email)?.Value ?? "no-email";
+    var userId = ctx.User.Claims.FirstOrDefault(c =>
+        c.Type.Contains("nameidentifier"))?.Value ?? "unknown";
+
+    var email = ctx.User.Claims.FirstOrDefault(c =>
+        c.Type.Contains("emailaddress"))?.Value ?? "unknown";
 
     return Results.Ok(new
     {
@@ -62,7 +52,6 @@ app.MapGet("/secure", (HttpContext ctx) =>
         userId,
         email
     });
-})
-.RequireAuthorization();
+}).RequireAuthorization();
 
 app.Run();
