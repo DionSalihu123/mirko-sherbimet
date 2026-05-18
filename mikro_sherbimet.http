@@ -1,0 +1,6 @@
+@mikro_sherbimet_HostAddress = http://localhost:5268
+
+GET {{mikro_sherbimet_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

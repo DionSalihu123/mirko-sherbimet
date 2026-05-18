@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "crOEscCyXbSCxs9VXr2mq3rzkU7io/oTze8ZveiOJJo=",
+  "Source": "resource-service-1",
+  "BasePath": "_content/resource-service-1",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
