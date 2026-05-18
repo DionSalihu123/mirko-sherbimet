@@ -49,19 +49,29 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginDto dto)
+    public async Task<IActionResult> Login(LoginDto dto)
     {
         var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
 
-        if (user == null)
+        var success = user != null &&
+            BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+
+        // LOG EVENT (IMPORTANT FOR AI)
+        var loginEvent = new LoginEvent
+        {
+            Email = dto.Email,
+            Success = success,
+            IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            UserAgent = Request.Headers["User-Agent"].ToString()
+        };
+
+        _context.LoginEvents.Add(loginEvent);
+        await _context.SaveChangesAsync();
+
+        if (!success)
             return Unauthorized("Invalid credentials");
 
-        var isValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
-
-        if (!isValid)
-            return Unauthorized("Invalid credentials");
-
-        var token = GenerateJwtToken(user);
+        var token = GenerateJwtToken(user!);
 
         return Ok(new { token });
     }
