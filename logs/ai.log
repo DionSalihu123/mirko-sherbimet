@@ -1,0 +1,36 @@
+INFO:     Started server process [47025]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8001 (Press CTRL+C to quit)
+✅ AI model loaded successfully, anomaly threshold=-0.1
+INFO:     127.0.0.1:55724 - "GET /health HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:42096 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:39272 - "POST /score HTTP/1.1" 200 OK
+/home/dion/mikro_sherbimet/ai-service/.venv/lib/python3.12/site-packages/sklearn/utils/validation.py:2691: UserWarning: X does not have valid feature names, but IsolationForest was fitted with feature names
+  warnings.warn(
+INFO:     127.0.0.1:51674 - "POST /score HTTP/1.1" 200 OK

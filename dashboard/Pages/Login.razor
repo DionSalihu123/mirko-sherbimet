@@ -1,0 +1,135 @@
+@page "/login"
+@using dashboard.Services
+@inject IHttpClientFactory HttpClientFactory
+@inject SessionState Session
+
+<div class="page-header">
+    <h1 class="page-title">Sign in</h1>
+    <p class="page-desc">Create an account or log in. Passwords are hashed with bcrypt; successful login returns a JWT.</p>
+</div>
+
+<div class="form-grid">
+    <div class="panel">
+        <h3>Create account</h3>
+        <div class="field">
+            <label>Username</label>
+            <input class="input" @bind="regUsername" />
+        </div>
+        <div class="field">
+            <label>Email</label>
+            <input class="input" type="email" @bind="regEmail" />
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <input class="input" type="password" @bind="regPassword" />
+        </div>
+        <button class="btn btn-secondary w-100" @onclick="Register" disabled="@busy">Register</button>
+    </div>
+
+    <div class="panel panel-accent">
+        <h3>Login</h3>
+        <div class="field">
+            <label>Email</label>
+            <input class="input" type="email" @bind="loginEmail" />
+        </div>
+        <div class="field">
+            <label>Password</label>
+            <input class="input" type="password" @bind="loginPassword" />
+        </div>
+        <button class="btn btn-primary w-100" @onclick="DoLogin" disabled="@busy">Login & get JWT</button>
+    </div>
+</div>
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <div class="toast @(isError ? "toast-error" : "toast-success")">@message</div>
+}
+
+@if (!string.IsNullOrEmpty(Session.JwtToken))
+{
+    <div class="panel mt-4">
+        <h3>Your access token</h3>
+        <div class="token-box">@Session.JwtToken</div>
+        <a href="/api-test" class="btn btn-primary mt-3">Explore protected APIs</a>
+    </div>
+}
+
+@code {
+    private string regUsername = "demo_user";
+    private string regEmail = "";
+    private string regPassword = "TestPass123!";
+    private string loginEmail = "";
+    private string loginPassword = "TestPass123!";
+    private string message = "";
+    private bool isError;
+    private bool busy;
+
+    protected override void OnInitialized()
+    {
+        regEmail = $"user{Random.Shared.Next(1000, 9999)}@example.com";
+        loginEmail = regEmail;
+    }
+
+    private async Task Register()
+    {
+        busy = true;
+        message = "";
+        try
+        {
+            var client = HttpClientFactory.CreateClient("auth");
+            var resp = await client.PostAsJsonAsync("/api/auth/register", new
+            {
+                username = regUsername,
+                email = regEmail,
+                password = regPassword
+            });
+            var body = await resp.Content.ReadAsStringAsync();
+            isError = !resp.IsSuccessStatusCode;
+            message = isError ? body : "Registered! Now click Login.";
+            loginEmail = regEmail;
+            loginPassword = regPassword;
+        }
+        catch (Exception ex)
+        {
+            isError = true;
+            message = ex.Message;
+        }
+        busy = false;
+    }
+
+    private async Task DoLogin()
+    {
+        busy = true;
+        message = "";
+        try
+        {
+            var client = HttpClientFactory.CreateClient("auth");
+            var resp = await client.PostAsJsonAsync("/api/auth/login", new
+            {
+                email = loginEmail,
+                password = loginPassword
+            });
+            var body = await resp.Content.ReadAsStringAsync();
+
+            if (resp.IsSuccessStatusCode)
+            {
+                using var doc = System.Text.Json.JsonDocument.Parse(body);
+                var token = doc.RootElement.GetProperty("token").GetString() ?? "";
+                Session.SetLogin(loginEmail, token, "Login successful!");
+                message = "Login OK — JWT saved.";
+                isError = false;
+            }
+            else
+            {
+                message = body;
+                isError = true;
+            }
+        }
+        catch (Exception ex)
+        {
+            isError = true;
+            message = ex.Message;
+        }
+        busy = false;
+    }
+}

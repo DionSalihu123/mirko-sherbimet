@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
-using auth_service.Data;
-using auth_service.Models;
-using auth_service.DTOs;
-using BCrypt.Net;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using auth_service.Data;
+using auth_service.Models;
+using auth_service.DTOs;
 
 namespace auth_service.Controllers;
 
@@ -17,7 +17,7 @@ public class AuthController : ControllerBase
     private readonly ApplicationDbContext _context;
     private readonly IConfiguration _config;
 
-    public AuthController(ApplicationDbContext context,IConfiguration config)
+    public AuthController(ApplicationDbContext context, IConfiguration config)
     {
         _context = context;
         _config = config;
@@ -26,64 +26,51 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto dto)
     {
-        // check if user exists
-        var exists = _context.Users.Any(u => u.Email == dto.Email);
-
+        var exists = await _context.Users.AnyAsync(u => u.Email == dto.Email);
         if (exists)
             return BadRequest("User already exists");
-
-        // hash password
-        var passwordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password);
 
         var user = new User
         {
             Username = dto.Username,
             Email = dto.Email,
-            PasswordHash = passwordHash
+            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
         };
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
 
-        return Ok("User registered successfully");
+        return Ok(new { message = "User registered successfully" });
     }
 
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto dto)
     {
-        var user = _context.Users.FirstOrDefault(u => u.Email == dto.Email);
+        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
+        if (user == null)
+            return Unauthorized(new { message = "Invalid credentials" });
 
-        var success = user != null &&
-            BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash);
+        if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+            return Unauthorized(new { message = "Invalid credentials" });
 
-        // LOG EVENT (IMPORTANT FOR AI)
-        var loginEvent = new LoginEvent
+        var token = GenerateJwtToken(user);
+
+        return Ok(new
         {
-            Email = dto.Email,
-            Success = success,
-            IpAddress = HttpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
-            UserAgent = Request.Headers["User-Agent"].ToString()
-        };
-
-        _context.LoginEvents.Add(loginEvent);
-        await _context.SaveChangesAsync();
-
-        if (!success)
-            return Unauthorized("Invalid credentials");
-
-        var token = GenerateJwtToken(user!);
-
-        return Ok(new { token });
+            token,
+            expiresInMinutes = 30,
+            email = user.Email
+        });
     }
+
+    [HttpGet("health")]
+    public IActionResult Health() => Ok(new { status = "ok", service = "auth-service" });
 
     private string GenerateJwtToken(User user)
     {
         var jwtSettings = _config.GetSection("Jwt");
 
-        var key = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(jwtSettings["Key"]!)
-                );
-
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
@@ -93,14 +80,13 @@ public class AuthController : ControllerBase
         };
 
         var token = new JwtSecurityToken(
-                issuer: jwtSettings["Issuer"],
-                audience: jwtSettings["Audience"],
-                claims: claims,
-                expires: DateTime.UtcNow.AddHours(1),
-                signingCredentials: creds
-                );
+            issuer: jwtSettings["Issuer"],
+            audience: jwtSettings["Audience"],
+            claims: claims,
+            expires: DateTime.UtcNow.AddMinutes(30),
+            signingCredentials: creds
+        );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
-
 }

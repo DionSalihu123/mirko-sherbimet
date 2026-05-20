@@ -1,0 +1,35 @@
+@inherits LayoutComponentBase
+@inject NavigationManager Nav
+
+<div class="app-shell">
+    <aside class="sidebar">
+        <div class="brand-row">
+            <div class="brand-icon" aria-hidden="true"></div>
+            <div>
+                <div class="brand">Gatekeeper</div>
+                <div class="subtitle">Login security platform</div>
+            </div>
+        </div>
+        <nav>
+            <a class="nav-link @Active("/")" href="/">Home</a>
+            <a class="nav-link @Active("/login")" href="/login">Sign in</a>
+            <a class="nav-link @Active("/api-test")" href="/api-test">API Explorer</a>
+            <a class="nav-link @Active("/ai-model")" href="/ai-model">AI Model</a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="status-dot online"></div>
+            <span>Services running locally</span>
+        </div>
+    </aside>
+    <main class="main-content">
+        @Body
+    </main>
+</div>
+
+@code {
+    private string Active(string path) =>
+        Nav.ToBaseRelativePath(Nav.Uri).TrimEnd('/') == path.TrimStart('/')
+        || (path == "/" && string.IsNullOrEmpty(Nav.ToBaseRelativePath(Nav.Uri).TrimEnd('/')))
+            ? "active"
+            : "";
+}

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resource-service-1", "resou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "resource-service-2", "resource-service-2\resource-service-2.csproj", "{D37EF347-6700-4F8D-9831-7D25F81F87CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dashboard", "dashboard\dashboard.csproj", "{AEA27058-C9B7-467D-810E-51661FD34A0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{D37EF347-6700-4F8D-9831-7D25F81F87CA}.Release|x64.Build.0 = Release|Any CPU
 		{D37EF347-6700-4F8D-9831-7D25F81F87CA}.Release|x86.ActiveCfg = Release|Any CPU
 		{D37EF347-6700-4F8D-9831-7D25F81F87CA}.Release|x86.Build.0 = Release|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Debug|x64.Build.0 = Debug|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Debug|x86.Build.0 = Debug|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Release|x64.ActiveCfg = Release|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Release|x64.Build.0 = Release|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEA27058-C9B7-467D-810E-51661FD34A0E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

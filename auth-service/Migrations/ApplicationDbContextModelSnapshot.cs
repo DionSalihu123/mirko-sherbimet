@@ -30,6 +30,14 @@ namespace auth_service.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
@@ -37,6 +45,18 @@ namespace auth_service.Migrations
                     b.Property<string>("IpAddress")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<bool>("IsAnomaly")
+                        .HasColumnType("boolean");
+
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<float?>("RiskScore")
+                        .HasColumnType("real");
 
                     b.Property<bool>("Success")
                         .HasColumnType("boolean");
@@ -68,8 +88,26 @@ namespace auth_service.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<bool>("IsBlocked")
-                        .HasColumnType("boolean");
+                    b.Property<int>("FailedLoginAttempts")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("LastLoginAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("LastLoginCountry")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastLoginIp")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("LastLoginLatitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("LastLoginLongitude")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("LoginCount")
+                        .HasColumnType("integer");
 
                     b.Property<string>("PasswordHash")
                         .IsRequired()

@@ -29,6 +29,18 @@ builder.Services.AddAuthorization();
 builder.Services.AddReverseProxy()
     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 
+var certPath = Path.Combine(builder.Environment.ContentRootPath, "..", "certs", "localhost.pfx");
+if (File.Exists(certPath))
+{
+    builder.WebHost.ConfigureKestrel(options =>
+    {
+        options.ListenAnyIP(5002, listenOptions =>
+        {
+            listenOptions.UseHttps(certPath, string.Empty);
+        });
+    });
+}
+
 var app = builder.Build();
 
 app.UseAuthentication();

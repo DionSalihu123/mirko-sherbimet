@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// JWT AUTH
+builder.Services.AddOpenApi();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
@@ -14,41 +16,38 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(
-                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
-            )
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+            NameClaimType = ClaimTypes.NameIdentifier,
+            RoleClaimType = ClaimTypes.Role
         };
     });
 
 builder.Services.AddAuthorization();
+builder.WebHost.ConfigureKestrel(options => options.ListenAnyIP(5295));
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+    app.MapOpenApi();
 
 app.UseAuthentication();
 app.UseAuthorization();
 
-// PUBLIC
-app.MapGet("/public", () =>
-{
-    return Results.Ok("Resource Service 2 - Public Data");
-});
+app.MapGet("/health", () => Results.Ok(new { status = "ok", service = "resource-service-2" }));
+app.MapGet("/public", () => Results.Ok("This is public data"));
 
-// SECURE
 app.MapGet("/secure", (HttpContext ctx) =>
 {
-    var userId = ctx.User.Claims.FirstOrDefault(c =>
-        c.Type.Contains("nameidentifier"))?.Value ?? "unknown";
-
-    var email = ctx.User.Claims.FirstOrDefault(c =>
-        c.Type.Contains("emailaddress"))?.Value ?? "unknown";
+    var userId = ctx.User.FindFirst(ClaimTypes.NameIdentifier)?.Value ?? "unknown";
+    var email = ctx.User.FindFirst(ClaimTypes.Email)?.Value ?? "no-email";
 
     return Results.Ok(new
     {
+        message = "You accessed a secure endpoint",
         service = "resource-service-2",
-        message = "Secure access granted",
         userId,
         email
     });

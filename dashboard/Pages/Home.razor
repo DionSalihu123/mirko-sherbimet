@@ -1,0 +1,77 @@
+@page "/"
+@using dashboard.Services
+@inject SessionState Session
+
+<section class="hero">
+    <h1>Secure login across microservices</h1>
+    <p class="hero-text">
+        Gatekeeper handles user authentication with bcrypt and JWT, while separate API services
+        validate the same token. An Isolation Forest model learns what normal logins look like
+        so suspicious patterns can be flagged later.
+    </p>
+</section>
+
+<div class="flow-strip">
+    <div class="flow-step">
+        <span class="flow-num">1</span>
+        <span>Register / sign in</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+        <span class="flow-num">2</span>
+        <span>Receive JWT</span>
+    </div>
+    <div class="flow-arrow">→</div>
+    <div class="flow-step">
+        <span class="flow-num">3</span>
+        <span>Call protected APIs</span>
+    </div>
+</div>
+
+<h2 class="section-title">What this system does</h2>
+
+<div class="feature-grid">
+    <a href="/login" class="feature-card">
+        <div class="feature-icon icon-auth"></div>
+        <h3>Authentication</h3>
+        <p>Create accounts, store bcrypt-hashed passwords, and issue signed JWT tokens with a 30-minute lifetime.</p>
+        <span class="feature-link">Go to sign in</span>
+    </a>
+    <a href="/api-test" class="feature-card">
+        <div class="feature-icon icon-api"></div>
+        <h3>Protected APIs</h3>
+        <p>Two independent resource services share one JWT secret and reject requests without a valid token.</p>
+        <span class="feature-link">Open API explorer</span>
+    </a>
+    <a href="/ai-model" class="feature-card">
+        <div class="feature-icon icon-ai"></div>
+        <h3>Anomaly detection</h3>
+        <p>Train an Isolation Forest on login features — time, IP changes, failed attempts, geo signals, and more.</p>
+        <span class="feature-link">View model status</span>
+    </a>
+    <div class="feature-card feature-card-static">
+        <div class="feature-icon icon-arch"></div>
+        <h3>Distributed design</h3>
+        <p>Auth, two resource APIs, Python ML module, and this dashboard — each runs as its own service on separate ports.</p>
+    </div>
+</div>
+
+<div class="session-panel">
+    <div class="session-header">
+        <h4>Current session</h4>
+        @if (!string.IsNullOrEmpty(Session.JwtToken))
+        {
+            <span class="pill pill-ok">Active</span>
+        }
+    </div>
+    @if (!string.IsNullOrEmpty(Session.JwtToken))
+    {
+        <p class="session-ok">Signed in as <strong>@Session.Email</strong></p>
+        <div class="token-box">@(Session.JwtToken!.Length > 100 ? Session.JwtToken[..100] + "…" : Session.JwtToken)</div>
+        <a href="/api-test" class="btn btn-primary btn-sm mt-3">Try protected endpoints</a>
+    }
+    else
+    {
+        <p class="session-empty">No active session. <a href="/login">Sign in</a> to get a token.</p>
+    }
+</div>

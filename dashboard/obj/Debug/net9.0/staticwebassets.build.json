@@ -1,0 +1,362 @@
+{
+  "Version": 1,
+  "Hash": "cAXDQEbSEsuYyWNTV3LyXKWc7pOdzf0E18IRC09IsAE=",
+  "Source": "dashboard",
+  "BasePath": "_content/dashboard",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "dashboard/wwwroot",
+      "Source": "dashboard",
+      "ContentRoot": "/home/dion/mikro_sherbimet/dashboard/wwwroot/",
+      "BasePath": "_content/dashboard",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/home/dion/mikro_sherbimet/dashboard/obj/Debug/net9.0/compressed/891kyje3p7-9d4qd7szvi.gz",
+      "SourceId": "dashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dion/mikro_sherbimet/dashboard/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/dashboard",
+      "RelativePath": "css/app#[.{fingerprint=9d4qd7szvi}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/home/dion/mikro_sherbimet/dashboard/wwwroot/css/app.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "rck26vf1ye",
+      "Integrity": "dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/home/dion/mikro_sherbimet/dashboard/wwwroot/css/app.css"
+    },
+    {
+      "Identity": "/home/dion/mikro_sherbimet/dashboard/wwwroot/css/app.css",
+      "SourceId": "dashboard",
+      "SourceType": "Discovered",
+      "ContentRoot": "/home/dion/mikro_sherbimet/dashboard/wwwroot/",
+      "BasePath": "_content/dashboard",
+      "RelativePath": "css/app#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "9d4qd7szvi",
+      "Integrity": "Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/app.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "css/app.9d4qd7szvi.css",
+      "AssetFile": "/home/dion/mikro_sherbimet/dashboard/obj/Debug/net9.0/compressed/891kyje3p7-9d4qd7szvi.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000366166239"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2730"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 May 2026 14:04:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9d4qd7szvi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.9d4qd7szvi.css",
+      "AssetFile": "/home/dion/mikro_sherbimet/dashboard/wwwroot/css/app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11509"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 May 2026 14:04:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9d4qd7szvi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.9d4qd7szvi.css.gz",
+      "AssetFile": "/home/dion/mikro_sherbimet/dashboard/obj/Debug/net9.0/compressed/891kyje3p7-9d4qd7szvi.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2730"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 May 2026 14:04:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "9d4qd7szvi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/app.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css",
+      "AssetFile": "/home/dion/mikro_sherbimet/dashboard/obj/Debug/net9.0/compressed/891kyje3p7-9d4qd7szvi.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000366166239"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2730"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 May 2026 14:04:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css",
+      "AssetFile": "/home/dion/mikro_sherbimet/dashboard/wwwroot/css/app.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "11509"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 May 2026 14:04:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Yz7mQzGHkxWIebcoS/MtYEuv9B0PYRXJ7NWkY0K0jD8="
+        }
+      ]
+    },
+    {
+      "Route": "css/app.css.gz",
+      "AssetFile": "/home/dion/mikro_sherbimet/dashboard/obj/Debug/net9.0/compressed/891kyje3p7-9d4qd7szvi.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2730"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 20 May 2026 14:04:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-dVrA9EgtAMK7p6527UyFCknZzh8s2z91/DmTa068PsA="
+        }
+      ]
+    }
+  ]
+}

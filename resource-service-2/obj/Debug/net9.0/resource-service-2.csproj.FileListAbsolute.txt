@@ -40,3 +40,6 @@
 /home/dion/mikro_sherbimet/resource-service-2/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
 /home/dion/mikro_sherbimet/resource-service-2/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /home/dion/mikro_sherbimet/resource-service-2/obj/Debug/net9.0/resource-service-2.sourcelink.json
+/home/dion/mikro_sherbimet_jo_gati/resource-service-2/obj/Debug/net9.0/resource-service-2.dll
+/home/dion/mikro_sherbimet_jo_gati/resource-service-2/obj/Debug/net9.0/refint/resource-service-2.dll
+/home/dion/mikro_sherbimet_jo_gati/resource-service-2/obj/Debug/net9.0/resource-service-2.pdb

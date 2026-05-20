@@ -10,7 +10,23 @@ public class User
 
     public string PasswordHash { get; set; } = string.Empty;
 
-    public bool IsBlocked { get; set; } = false;
+    // -------------------------
+    // AI / Security fields
+    // -------------------------
+
+    public int FailedLoginAttempts { get; set; } = 0;
 
     public DateTime? BlockedUntil { get; set; }
+
+    public string? LastLoginIp { get; set; }
+
+    public string? LastLoginCountry { get; set; }
+
+    public double? LastLoginLatitude { get; set; }
+
+    public double? LastLoginLongitude { get; set; }
+
+    public DateTime? LastLoginAt { get; set; }
+
+    public int LoginCount { get; set; } = 0;
 }
