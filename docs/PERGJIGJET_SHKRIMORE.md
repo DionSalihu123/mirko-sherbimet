@@ -1,65 +1,110 @@
-# Përgjigje me Shkrim – Kërkesa 10 (min. 1 faqe)
+# Përgjigje me Shkrim - Kërkesa 10
 
-## (a) JWT vs Sesion
+**Punuar nga:** Dion Salihu  
+**Tema:** JWT Microservices Authentication System
 
-**Sesioni (session-based):** Serveri ruan gjendjen e përdoruesit (session ID në cookie). Çdo request kërkon lookup në DB/cache. E thjeshtë për monolit, por vështirë në mikroshërbime sepse session duhet të ndahet ose të “sticky” në një instancë.
+---
 
-**JWT (JSON Web Token):** Pas login-it, serveri kthen një token të nënshkruar që klienti dërgon në `Authorization: Bearer`. Çdo mikroshërbim e validon vetë me sekretin e përbashkët (HMAC-SHA256) pa pyetur auth-service-in. Është **stateless** – shkallëzohet mirë. Disavantazh: nuk mund ta “fshish” lehtë token-in para skadimit (duhet blacklist ose expiry i shkurtër – këtu 30 min).
+## (a) JWT vs Session
 
-Në këtë projekt, `auth-service` lëshon JWT; `resource-service-1/2` e verifikojnë me të njëjtin `Jwt:Key`.
+**Session-based authentication** ruan gjendjen e përdoruesit në server. Kur përdoruesi bën login, serveri krijon një session ID dhe zakonisht e ruan në cookie. Në çdo request tjetër, serveri duhet ta kontrollojë atë session në memorie, cache ose databazë.
+
+Kjo qasje është e thjeshtë për aplikacione monolitike, por bëhet më komplekse në mikroshërbime. Nëse sistemi ka disa services, atëherë të gjitha duhet të kenë qasje te i njëjti session storage ose duhet të përdoren sticky sessions. Kjo e rrit varësinë midis shërbimeve.
+
+**JWT authentication** është stateless. Pas login-it, Auth Service krijon një token të nënshkruar dhe ia kthen klientit. Klienti e dërgon token-in në çdo request:
+
+```text
+Authorization: Bearer <JWT_TOKEN>
+```
+
+Secili Resource Service mund ta validojë JWT vetë duke kontrolluar:
+
+- nënshkrimin
+- issuer
+- audience
+- skadimin e token-it
+
+Në këtë projekt, `auth-service` lëshon JWT, ndërsa `resource-service-1` dhe `resource-service-2` e validojnë token-in me të njëjtin sekret. Kjo e bën JWT të përshtatshëm për mikroshërbime, sepse Resource Services nuk kanë nevojë ta pyesin Auth Service për çdo request.
 
 ---
 
 ## (b) bcrypt vs SHA-256
 
-**SHA-256** është hash i shpejtë dhe deterministik. Sulmuesi mund të provojë miliarda fjalëkalime në sekondë me GPU (rainbow tables për fjalëkalime të zakonshme).
+**SHA-256** është algoritëm hash shumë i shpejtë dhe deterministik. Ai është i dobishëm për integritetin e të dhënave, për shembull për të kontrolluar nëse një file është ndryshuar. Por për password-e nuk është zgjidhje e mirë, sepse shpejtësia e tij i ndihmon sulmuesit të provojnë shumë kombinime në kohë të shkurtër.
 
-**bcrypt** është i projektuar për fjalëkalime: përdor **salt** unik për çdo përdorues dhe **work factor** (kosto e llogaritjes). Çdo verifikim zgjat disa ms – e padobishme për brute-force offline. Në `AuthController`, ruajmë `BCrypt.HashPassword` dhe `BCrypt.Verify`.
+**bcrypt** është krijuar posaçërisht për ruajtjen e password-eve. Ai përdor salt unik për çdo password dhe ka work factor, që e bën procesin më të ngadalshëm. Kjo e vështirëson brute-force offline.
 
-SHA-256 është i mirë për integritetin e skedarëve; **jo** për ruajtjen e password-eve.
+Në këtë projekt, gjatë regjistrimit përdoret:
+
+```csharp
+BCrypt.Net.BCrypt.HashPassword(dto.Password)
+```
+
+Gjatë login-it përdoret:
+
+```csharp
+BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash)
+```
+
+Kjo do të thotë që password-i real nuk ruhet në databazë. Në databazë ruhet vetëm hash-i.
 
 ---
 
 ## (c) Isolation Forest
 
-Algoritëm **unsupervised** që ndërton pemë të rastësishme dhe mat sa “e izoluar” është një pikë. Outlier-at (login të pazakontë) izolohen me më pak ndarje → score i ulët.
+Isolation Forest është algoritëm unsupervised për anomaly detection. Ai ndërton pemë rastësore dhe mat sa shpejt izolohet një pikë. Pikat normale zakonisht kërkojnë më shumë ndarje për t'u izoluar, ndërsa pikat e pazakonta izolohen më shpejt.
 
-**Pse për login security?** Nuk kemi gjithmonë 1000 etiketa “sulm” për trajnim supervizuar. Trajnojmë me ~200 login “normale” + disa shembuj anomalie në `train.py`. Në runtime, `auth-service` dërgon features (ora, failed attempts, geo, etj.) te `ai-service`; nëse `decision_function < threshold`, flagohet anomali.
+Ky algoritëm është i përshtatshëm për login security sepse shpesh nuk kemi shumë shembuj realë të sulmeve të etiketuara. Në vend të kësaj, mund të trajnojmë modelin mbi sjellje normale dhe disa shembuj sintetikë anomalish.
+
+Në këtë projekt, `ai-service/train.py` trajnon një model `IsolationForest` mbi features të login-it si:
+
+- ora e login-it
+- tentimet e dështuara
+- IP e re
+- success rate
+- frekuenca e login-it
+- ndryshim shteti
+- impossible travel
+- distanca në kilometra
+- koha nga login-i i fundit
+- ndryshim user-agent/browser
+
+Modeli ruhet në:
+
+```text
+models/isolation_forest.pkl
+```
 
 ---
 
-## (d) Pse rate limit nuk mjafton
+## (d) Pse rate limiting nuk mjafton
 
-**Rate limiting (Token Bucket)** në `LoginRateLimiter` kufizon shpejtësinë e request-ve për IP/email – mirë kundër flood-it të thjeshtë.
+Rate limiting kufizon numrin ose shpejtësinë e request-ve. Për shembull, mund të lejojë vetëm disa tentativa login-i brenda një minute. Kjo ndihmon kundër brute-force të thjeshtë.
 
-Por nuk zbulon:
-- **Credential stuffing** (password të vjedhura, shpejtësi e ulët)
-- **Impossible travel** (geo e pamundur)
-- **Orare/browser të pazakontë** për atë përdorues
+Megjithatë, rate limiting nuk mjafton për të gjitha rastet:
 
-AI analizon **kontekstin** të gjithë login-it, jo vetëm numrin e request-ve. Prandaj përdorim të dyja: rate limit + Isolation Forest.
+- credential stuffing mund të bëhet ngadalë, pa e kaluar limitin
+- login nga një lokacion i pamundur nuk zbulohet vetëm nga numri i request-ve
+- një login në orë të pazakontë mund të jetë i dyshimtë edhe nëse është vetëm një request
+- ndryshimi i IP-së, shtetit dhe browser-it kërkon analizë konteksti
+
+Prandaj AI anomaly detection mund të analizojë disa features së bashku, jo vetëm numrin e request-ve. Në këtë projekt, Isolation Forest trajnohet mbi features të login-it për të kuptuar dallimin mes sjelljes normale dhe sjelljes së pazakontë.
 
 ---
 
 ## (e) Krahasim me Auth0 / Keycloak / Cognito
 
-| | Auth0 | Keycloak | AWS Cognito | Ky projekt |
-|---|-------|----------|-------------|------------|
-| Lloji | SaaS / IdP | Open-source IdP | Cloud AWS | Custom mikroshërbime |
-| JWT/OAuth | Po | Po | Po | Po (HMAC) |
-| AI anomaly | Jo (shtesë) | Jo | Jo (GuardDuty tjetër) | Po (Isolation Forest) |
-| Kontroll | I ulët | I lartë (self-host) | Mesatar | Plotë (edukativ) |
-| Kompleksitet | I ulët | I mesëm | I mesëm | I lartë (mësim) |
+| Platforma | Përshkrimi | Përparësitë | Kufizimet |
+|---|---|---|---|
+| Auth0 | SaaS identity provider | Setup i shpejtë, OAuth/OIDC, dashboard i gatshëm | Varësi nga palë e tretë, kosto |
+| Keycloak | Open-source identity provider | Kontroll i lartë, self-hosted, enterprise features | Setup dhe mirëmbajtje më komplekse |
+| AWS Cognito | Shërbim i AWS për auth | Integrim i mirë me AWS, menaxhim cloud | I lidhur me ekosistemin AWS |
+| Ky projekt | Implementim edukativ custom | Tregon JWT, bcrypt, mikroshërbime dhe AI training në kod | Jo production-ready pa hardening shtesë |
 
-**Auth0:** i shpejtë për startup, por kosto dhe varësi nga cloud. **Keycloak:** standard enterprise, SSO, por setup i rëndë. **Cognito:** integrim AWS. **Ky sistem:** demonstron konceptet (JWT, bcrypt, TLS, AI) për kurs – jo zëvendëson prodhimin pa hardening shtesë.
+Ky projekt nuk synon të zëvendësojë Auth0, Keycloak ose Cognito në prodhim. Qëllimi është edukativ: të demonstrohet se si funksionon autentifikimi JWT në mikroshërbime dhe si mund të trajnohet një model AI për login anomaly detection.
 
 ---
 
-## Tabela False Positive (shembull – plotëso pas testit)
+## Përfundim
 
-| Threshold | Login normale (50) | False positives | Shënim |
-|-----------|-------------------|-----------------|--------|
-| -0.05 (para) | 50 | ? | Më i ndjeshëm |
-| -0.10 (pas) | 50 | ? | Default në `model_config.json` |
-
-Ekzekuto: `python3 scripts/normal_login_tuning.py` dhe plotëso numrat në dokumentin final për profesorin.
+Përgjigjet mbulojnë konceptet kryesore të projektit: JWT, sessions, bcrypt, SHA-256, Isolation Forest, rate limiting dhe krahasimin me platforma ekzistuese të autentifikimit. Këto koncepte lidhen direkt me implementimin në kod.

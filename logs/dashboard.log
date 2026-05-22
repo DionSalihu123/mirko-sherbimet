@@ -20,13 +20,11 @@ info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[107]
 info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[109]
       Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
 info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[104]
-      Executed page /_Host in 285.7569ms
+      Executed page /_Host in 274.7102ms
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
       Executed endpoint '/_Host'
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5080/ - 200 - text/html;+charset=utf-8 401.7694ms
-info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/1.1 GET http://localhost:5080/css/app.css - - -
+      Request finished HTTP/1.1 GET http://localhost:5080/ - 200 - text/html;+charset=utf-8 388.1408ms
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
       Request starting HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - - -
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
@@ -36,11 +34,7 @@ info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
       Executed endpoint 'Blazor static files'
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - 304 - text/javascript 13.7877ms
-info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[2]
-      Sending file. Request path: '/css/app.css'. Physical path: '/home/dion/mikro_sherbimet/dashboard/wwwroot/css/app.css'
-info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5080/css/app.css - 200 8512 text/css 22.0365ms
+      Request finished HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - 304 - text/javascript 17.0000ms
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
       Request starting HTTP/1.1 GET http://localhost:5080/_blazor/initializers - - -
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
@@ -48,7 +42,7 @@ info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
       Executed endpoint 'Blazor initializers'
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5080/_blazor/initializers - 200 - application/json;+charset=utf-8 11.6794ms
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor/initializers - 200 - application/json;+charset=utf-8 15.3052ms
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
       Request starting HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - - 0
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
@@ -56,9 +50,9 @@ info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
       Executed endpoint '/_blazor/negotiate'
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 13.2066ms
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 14.6949ms
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/1.1 GET http://localhost:5080/_blazor?id=zBxRan3p4nJaHvhYg0Sjcw - - -
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor?id=0RoFlFN5hMubOgNVpPnK_g - - -
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
       Executing endpoint '/_blazor'
 info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
@@ -66,74 +60,320 @@ info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
 info: System.Net.Http.HttpClient.auth.ClientHandler[100]
       Sending HTTP request POST http://localhost:5038/api/auth/register
 info: System.Net.Http.HttpClient.auth.ClientHandler[101]
-      Received HTTP response headers after 519.2984ms - 200
+      Received HTTP response headers after 485.1267ms - 200
 info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
-      End processing HTTP request after 531.0753ms - 200
-info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
-      Start processing HTTP request POST http://localhost:5038/api/auth/register
-info: System.Net.Http.HttpClient.auth.ClientHandler[100]
-      Sending HTTP request POST http://localhost:5038/api/auth/register
-info: System.Net.Http.HttpClient.auth.ClientHandler[101]
-      Received HTTP response headers after 9.6774ms - 400
-info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
-      End processing HTTP request after 10.0391ms - 400
+      End processing HTTP request after 498.4294ms - 200
 info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
       Start processing HTTP request POST http://localhost:5038/api/auth/login
 info: System.Net.Http.HttpClient.auth.ClientHandler[100]
       Sending HTTP request POST http://localhost:5038/api/auth/login
 info: System.Net.Http.HttpClient.auth.ClientHandler[101]
-      Received HTTP response headers after 413.6188ms - 200
+      Received HTTP response headers after 368.7379ms - 200
 info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
-      End processing HTTP request after 413.8085ms - 200
-info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
-      Start processing HTTP request GET http://localhost:5226/secure
-info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
-      Sending HTTP request GET http://localhost:5226/secure
-info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
-      Received HTTP response headers after 6.6287ms - 401
-info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
-      End processing HTTP request after 6.7808ms - 401
-info: System.Net.Http.HttpClient.resource2.LogicalHandler[100]
-      Start processing HTTP request GET http://localhost:5295/secure
-info: System.Net.Http.HttpClient.resource2.ClientHandler[100]
-      Sending HTTP request GET http://localhost:5295/secure
-info: System.Net.Http.HttpClient.resource2.ClientHandler[101]
-      Received HTTP response headers after 6.2525ms - 401
-info: System.Net.Http.HttpClient.resource2.LogicalHandler[101]
-      End processing HTTP request after 6.4225ms - 401
-info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
-      Start processing HTTP request GET http://localhost:5226/secure
-info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
-      Sending HTTP request GET http://localhost:5226/secure
-info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
-      Received HTTP response headers after 30.8962ms - 401
-info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
-      End processing HTTP request after 31.051ms - 401
-info: System.Net.Http.HttpClient.resource2.LogicalHandler[100]
-      Start processing HTTP request GET http://localhost:5295/secure
-info: System.Net.Http.HttpClient.resource2.ClientHandler[100]
-      Sending HTTP request GET http://localhost:5295/secure
-info: System.Net.Http.HttpClient.resource2.ClientHandler[101]
-      Received HTTP response headers after 4.4056ms - 200
-info: System.Net.Http.HttpClient.resource2.LogicalHandler[101]
-      End processing HTTP request after 4.5655ms - 200
-info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
-      Start processing HTTP request GET http://localhost:5226/secure
-info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
-      Sending HTTP request GET http://localhost:5226/secure
-info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
-      Received HTTP response headers after 2.3999ms - 200
-info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
-      End processing HTTP request after 2.5484ms - 200
+      End processing HTTP request after 369.0333ms - 200
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/ - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_Host'
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[103]
+      Route matched with {page = "/_Host"}. Executing page /_Host
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[107]
+      Executing an implicit handler method - ModelState is Valid
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[109]
+      Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.9719ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor?id=0RoFlFN5hMubOgNVpPnK_g - 101 - - 69294.7147ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor?id=m2JItFtu2ykCzFm9CUoaiQ - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor'
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[104]
+      Executed page /_Host in 32.708ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_Host'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/ - 200 - text/html;+charset=utf-8 34.2316ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - multipart/form-data;+boundary=----geckoformboundarye4c0c92e8d980e407ee4e3bb00b0b0c2 389
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor disconnect'
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
       Executed endpoint '/_blazor'
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 GET http://localhost:5080/_blazor?id=zBxRan3p4nJaHvhYg0Sjcw - 101 - - 595578.4271ms
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor?id=m2JItFtu2ykCzFm9CUoaiQ - 101 - - 23.4885ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor disconnect'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - 200 0 - 34.8080ms
 info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
-      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - multipart/form-data;+boundary=----geckoformboundarya097d0552bca14e278a2e741972303a6 389
+      Request starting HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor static files'
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /_framework/blazor.server.js was not modified
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor static files'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - 304 - text/javascript 28.3170ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor/initializers - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor initializers'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor initializers'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor/initializers - 200 - application/json;+charset=utf-8 0.8442ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.7672ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor?id=3lO1BxlSa865WKJ9OoPIhg - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor'
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 15.3986ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 15.5422ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 3.5612ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 3.6866ms - 401
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[101]
+      Received HTTP response headers after 6.3684ms - 401
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[101]
+      End processing HTTP request after 6.5485ms - 401
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[101]
+      Received HTTP response headers after 2.9818ms - 401
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[101]
+      End processing HTTP request after 3.1688ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 2.3097ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 2.4588ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
+      Start processing HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[100]
+      Sending HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[101]
+      Received HTTP response headers after 7.5051ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
+      End processing HTTP request after 7.8069ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
+      Start processing HTTP request POST http://localhost:5038/api/auth/register
+info: System.Net.Http.HttpClient.auth.ClientHandler[100]
+      Sending HTTP request POST http://localhost:5038/api/auth/register
+info: System.Net.Http.HttpClient.auth.ClientHandler[101]
+      Received HTTP response headers after 400.0432ms - 200
+info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
+      End processing HTTP request after 400.2233ms - 200
+info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
+      Start processing HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[100]
+      Sending HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[101]
+      Received HTTP response headers after 365.3547ms - 200
+info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
+      End processing HTTP request after 365.5077ms - 200
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 3.6033ms - 200
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 3.7449ms - 200
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[101]
+      Received HTTP response headers after 3.8487ms - 200
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[101]
+      End processing HTTP request after 3.995ms - 200
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 25.9325ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 26.0495ms - 401
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5295/secure
+info: System.Net.Http.HttpClient.resource2.ClientHandler[101]
+      Received HTTP response headers after 1.566ms - 401
+info: System.Net.Http.HttpClient.resource2.LogicalHandler[101]
+      End processing HTTP request after 1.6755ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 1.9434ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 2.1082ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
+      Start processing HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[100]
+      Sending HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[101]
+      Received HTTP response headers after 22.1367ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
+      End processing HTTP request after 22.5777ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
+      Start processing HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[100]
+      Sending HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[101]
+      Received HTTP response headers after 6.0548ms - 401
+info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
+      End processing HTTP request after 6.2592ms - 401
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor?id=3lO1BxlSa865WKJ9OoPIhg - 101 - - 102103.5449ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/login - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_Host'
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[103]
+      Route matched with {page = "/_Host"}. Executing page /_Host
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[107]
+      Executing an implicit handler method - ModelState is Valid
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[109]
+      Executed an implicit handler method, returned result Microsoft.AspNetCore.Mvc.RazorPages.PageResult.
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Mvc.RazorPages.Infrastructure.PageActionInvoker[104]
+      Executed page /_Host in 9.3156ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_Host'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.7156ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/login - 200 - text/html;+charset=utf-8 12.9935ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor?id=P6jOOPXOpksKgJiCgbdSjw - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - multipart/form-data;+boundary=----geckoformboundarycf601734c9d02f6f22daee1528235bdf 389
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor disconnect'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor disconnect'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - 200 0 - 4.0445ms
+info: Microsoft.AspNetCore.Server.Kestrel.Connections[34]
+      Connection id "0HNLNU9AI0J6O", Request id "0HNLNU9AI0J6O:00000001": the application aborted the connection.
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor?id=P6jOOPXOpksKgJiCgbdSjw - 101 - - 47.9016ms
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor static files'
+info: Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware[6]
+      The file /_framework/blazor.server.js was not modified
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor static files'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_framework/blazor.server.js - 304 - text/javascript 22.7070ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor/initializers - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint 'Blazor initializers'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint 'Blazor initializers'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor/initializers - 200 - application/json;+charset=utf-8 0.5189ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - - 0
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor/negotiate'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/negotiate?negotiateVersion=1 - 200 316 application/json 0.6801ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 GET http://localhost:5080/_blazor?id=Fl2BFSlsIp5vO1-UxqE9bA - - -
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
+      Executing endpoint '/_blazor'
+info: System.Net.Http.HttpClient.auth.LogicalHandler[100]
+      Start processing HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[100]
+      Sending HTTP request POST http://localhost:5038/api/auth/login
+info: System.Net.Http.HttpClient.auth.ClientHandler[101]
+      Received HTTP response headers after 356.7981ms - 200
+info: System.Net.Http.HttpClient.auth.LogicalHandler[101]
+      End processing HTTP request after 356.9072ms - 200
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 3.2048ms - 200
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 3.3468ms - 200
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[100]
+      Start processing HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[100]
+      Sending HTTP request GET http://localhost:5226/secure
+info: System.Net.Http.HttpClient.resource1.ClientHandler[101]
+      Received HTTP response headers after 2.8435ms - 401
+info: System.Net.Http.HttpClient.resource1.LogicalHandler[101]
+      End processing HTTP request after 2.9527ms - 401
+info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
+      Executed endpoint '/_blazor'
+info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
+      Request finished HTTP/1.1 GET http://localhost:5080/_blazor?id=Fl2BFSlsIp5vO1-UxqE9bA - 101 - - 42447.6956ms
+info: Microsoft.AspNetCore.Hosting.Diagnostics[1]
+      Request starting HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - multipart/form-data;+boundary=----geckoformboundary1b8a858e326b85bdb11e0a7ba3599e76 389
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[0]
       Executing endpoint 'Blazor disconnect'
 info: Microsoft.AspNetCore.Routing.EndpointMiddleware[1]
       Executed endpoint 'Blazor disconnect'
 info: Microsoft.AspNetCore.Hosting.Diagnostics[2]
-      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - 499 - - 31.8177ms
+      Request finished HTTP/1.1 POST http://localhost:5080/_blazor/disconnect - 200 0 - 1.3788ms

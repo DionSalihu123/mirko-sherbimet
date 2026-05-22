@@ -16,7 +16,7 @@ University project scoped to **4 tasks = 40 points**. Everything else was remove
 ## Quick start
 
 ```bash
-cd /home/dion/mikro_sherbimet_jo_gati
+cd /home/dion/mikro_sherbimet
 docker compose up -d
 dotnet ef database update --project auth-service/auth-service.csproj
 chmod +x scripts/run-all-services.sh
@@ -69,8 +69,3 @@ python3 scripts/run-integration-tests.py
 ./scripts/test-jwt.sh
 ```
 
----
-
-## Submission checklist
-
-See [docs/DEMO_CHECKLIST.md](docs/DEMO_CHECKLIST.md).

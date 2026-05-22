@@ -23,7 +23,7 @@ fi
 fuser -k 5038/tcp 5226/tcp 5295/tcp 5080/tcp 2>/dev/null || true
 sleep 1
 
-dotnet build JwtAiSystem.sln -v q
+dotnet build JwtAiSystem.sln -m:1 -v q
 
 nohup dotnet run --project auth-service --no-build > logs/auth.log 2>&1 &
 nohup dotnet run --project resource-service-1 --no-build > logs/resource1.log 2>&1 &

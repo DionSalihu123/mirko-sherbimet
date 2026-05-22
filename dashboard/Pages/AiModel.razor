@@ -2,17 +2,17 @@
 @inject IWebHostEnvironment Env
 
 <div class="page-header">
-    <h1 class="page-title">AI Model</h1>
-    <p class="page-desc">Isolation Forest trained on login behavior — used to spot outliers like brute-force or unusual travel patterns.</p>
+    <h1 class="page-title">Modeli AI</h1>
+    <p class="page-desc">Isolation Forest trajnohet mbi sjellje të login-it për të dalluar raste të pazakonta si brute-force ose udhëtim i pamundur.</p>
 </div>
 
 <div class="stats-row">
     <div class="stat-chip">
-        <span class="stat-label">Algorithm</span>
+        <span class="stat-label">Algoritmi</span>
         <span class="stat-value">Isolation Forest</span>
     </div>
     <div class="stat-chip">
-        <span class="stat-label">Training samples</span>
+        <span class="stat-label">Mostra trajnimi</span>
         <span class="stat-value">250+</span>
     </div>
     <div class="stat-chip">
@@ -22,8 +22,8 @@
 </div>
 
 <div class="panel">
-    <h3>Train the model</h3>
-    <p class="panel-intro">Run this from the project root when you set up the project or need to retrain.</p>
+    <h3>Trajnimi i modelit</h3>
+    <p class="panel-intro">Këto komanda ekzekutohen nga folderi kryesor i projektit për ta trajnuar përsëri modelin.</p>
     <pre class="code-block">cd ~/mikro_sherbimet
 python3 -m venv ai-service/.venv
 ai-service/.venv/bin/pip install -r ai-service/requirements.txt
@@ -31,7 +31,7 @@ ai-service/.venv/bin/python ai-service/train.py</pre>
 </div>
 
 <div class="panel mt-3">
-    <h3>Input features</h3>
+    <h3>Features hyrëse</h3>
     <div class="tag-cloud">
         <span>hour</span>
         <span>failed_attempts</span>
@@ -47,14 +47,14 @@ ai-service/.venv/bin/python ai-service/train.py</pre>
 </div>
 
 <div class="panel mt-3">
-    <h3>Saved artifacts</h3>
+    <h3>Skedarët e ruajtur</h3>
     <div class="file-status @(modelExists ? "file-ok" : "file-missing")">
         <span>models/isolation_forest.pkl</span>
-        <strong>@(modelExists ? "Ready" : "Run train.py")</strong>
+        <strong>@(modelExists ? "Gati" : "Ekzekuto train.py")</strong>
     </div>
     <div class="file-status @(configExists ? "file-ok" : "file-missing")">
         <span>models/model_config.json</span>
-        <strong>@(configExists ? "Ready" : "Missing")</strong>
+        <strong>@(configExists ? "Gati" : "Mungon")</strong>
     </div>
 </div>
 

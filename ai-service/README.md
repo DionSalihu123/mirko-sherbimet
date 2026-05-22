@@ -13,4 +13,4 @@ Output:
 - `../models/isolation_forest.pkl`
 - `../models/model_config.json`
 
-`main.py` is optional (inference API). For 40 points you only need **training + saved model**.
+For the 40-point scope you only need **training + saved model**.

@@ -4,15 +4,15 @@
 @inject SessionState Session
 
 <div class="page-header">
-    <h1 class="page-title">Sign in</h1>
-    <p class="page-desc">Create an account or log in. Passwords are hashed with bcrypt; successful login returns a JWT.</p>
+    <h1 class="page-title">Regjistrim dhe login</h1>
+    <p class="page-desc">Krijo një llogari ose bëj login. Password-i ruhet si hash me bcrypt dhe login-i i suksesshëm kthen JWT.</p>
 </div>
 
 <div class="form-grid">
     <div class="panel">
-        <h3>Create account</h3>
+        <h3>Krijo llogari</h3>
         <div class="field">
-            <label>Username</label>
+            <label>Emri i përdoruesit</label>
             <input class="input" @bind="regUsername" />
         </div>
         <div class="field">
@@ -23,7 +23,7 @@
             <label>Password</label>
             <input class="input" type="password" @bind="regPassword" />
         </div>
-        <button class="btn btn-secondary w-100" @onclick="Register" disabled="@busy">Register</button>
+        <button class="btn btn-secondary w-100" @onclick="Register" disabled="@busy">Regjistrohu</button>
     </div>
 
     <div class="panel panel-accent">
@@ -36,7 +36,7 @@
             <label>Password</label>
             <input class="input" type="password" @bind="loginPassword" />
         </div>
-        <button class="btn btn-primary w-100" @onclick="DoLogin" disabled="@busy">Login & get JWT</button>
+        <button class="btn btn-primary w-100" @onclick="DoLogin" disabled="@busy">Bëj login dhe merr JWT</button>
     </div>
 </div>
 
@@ -48,9 +48,9 @@
 @if (!string.IsNullOrEmpty(Session.JwtToken))
 {
     <div class="panel mt-4">
-        <h3>Your access token</h3>
+        <h3>Access token</h3>
         <div class="token-box">@Session.JwtToken</div>
-        <a href="/api-test" class="btn btn-primary mt-3">Explore protected APIs</a>
+        <a href="/api-test" class="btn btn-primary mt-3">Testo API-të e mbrojtura</a>
     </div>
 }
 
@@ -85,7 +85,7 @@
             });
             var body = await resp.Content.ReadAsStringAsync();
             isError = !resp.IsSuccessStatusCode;
-            message = isError ? body : "Registered! Now click Login.";
+            message = isError ? body : "Regjistrimi u krye. Tani kliko Login.";
             loginEmail = regEmail;
             loginPassword = regPassword;
         }
@@ -115,8 +115,8 @@
             {
                 using var doc = System.Text.Json.JsonDocument.Parse(body);
                 var token = doc.RootElement.GetProperty("token").GetString() ?? "";
-                Session.SetLogin(loginEmail, token, "Login successful!");
-                message = "Login OK — JWT saved.";
+                Session.SetLogin(loginEmail, token, "Login-i u krye me sukses.");
+                message = "Login OK - JWT u ruajt në sesion.";
                 isError = false;
             }
             else

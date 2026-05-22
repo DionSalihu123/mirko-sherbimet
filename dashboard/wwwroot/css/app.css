@@ -109,10 +109,18 @@ body {
     margin-top: auto;
     padding-top: 1.25rem;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
     font-size: 0.72rem;
     color: #4b5563;
+    flex-wrap: wrap;
+}
+
+.sidebar-footer small {
+    flex-basis: 100%;
+    margin-left: 1rem;
+    color: #6b7280;
+    font-size: 0.72rem;
 }
 
 .status-dot {

@@ -4,45 +4,45 @@
 @inject SessionState Session
 
 <div class="page-header">
-    <h1 class="page-title">API Explorer</h1>
-    <p class="page-desc">Call secure endpoints on both resource services — with no token, a valid JWT, or an invalid one.</p>
+    <h1 class="page-title">Testimi i API-ve</h1>
+    <p class="page-desc">Testo endpoint-et /secure në të dy Resource Services: pa token, me JWT valid dhe me token të prishur.</p>
 </div>
 
 @if (string.IsNullOrEmpty(Session.JwtToken))
 {
-    <div class="toast toast-warn">Please <a href="/login">sign in</a> first to get a JWT.</div>
+    <div class="toast toast-warn">Së pari <a href="/login">bëj login</a> për të marrë JWT.</div>
 }
 else
 {
-    <p class="session-ok mb-4">Using token for <strong>@Session.Email</strong></p>
+    <p class="session-ok mb-4">Duke përdorur token për <strong>@Session.Email</strong></p>
 }
 
 <div class="demo-grid">
     <button class="demo-btn demo-fail" @onclick="() => Call(1, DemoMode.NoToken)" disabled="@busy">
         <span class="demo-code">401</span>
-        <span>Resource 1 — no token</span>
+        <span>Resource 1 - pa token</span>
     </button>
     <button class="demo-btn demo-ok" @onclick="() => Call(1, DemoMode.ValidToken)" disabled="@busy">
         <span class="demo-code">200</span>
-        <span>Resource 1 — valid JWT</span>
+        <span>Resource 1 - JWT valid</span>
     </button>
     <button class="demo-btn demo-fail" @onclick="() => Call(2, DemoMode.NoToken)" disabled="@busy">
         <span class="demo-code">401</span>
-        <span>Resource 2 — no token</span>
+        <span>Resource 2 - pa token</span>
     </button>
     <button class="demo-btn demo-ok" @onclick="() => Call(2, DemoMode.ValidToken)" disabled="@busy">
         <span class="demo-code">200</span>
-        <span>Resource 2 — valid JWT</span>
+        <span>Resource 2 - JWT valid</span>
     </button>
     <button class="demo-btn demo-fail demo-wide" @onclick="() => Call(1, DemoMode.InvalidToken)" disabled="@busy">
         <span class="demo-code">401</span>
-        <span>Invalid or tampered token</span>
+        <span>Token i pavlefshëm / i ndryshuar</span>
     </button>
 </div>
 
 @if (results.Count > 0)
 {
-    <h4 class="mt-4 mb-3">Results</h4>
+    <h4 class="mt-4 mb-3">Rezultatet</h4>
     @foreach (var r in results)
     {
         <div class="result-row @(r.Ok ? "result-ok" : "result-fail")">
@@ -64,9 +64,9 @@ else
         busy = true;
         var label = mode switch
         {
-            DemoMode.NoToken => $"resource-service-{service} /secure (no token)",
-            DemoMode.ValidToken => $"resource-service-{service} /secure (valid JWT)",
-            _ => $"resource-service-{service} /secure (invalid JWT)"
+            DemoMode.NoToken => $"resource-service-{service} /secure (pa token)",
+            DemoMode.ValidToken => $"resource-service-{service} /secure (JWT valid)",
+            _ => $"resource-service-{service} /secure (JWT i pavlefshëm)"
         };
 
         try

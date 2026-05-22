@@ -1,1 +1,15 @@
+bin/
+obj/
+
 venv/
+.venv/
+ai-service/venv/
+ai-service/.venv/
+
+__pycache__/
+*.pyc
+
+logs/
+*.log
+
+.DS_Store
