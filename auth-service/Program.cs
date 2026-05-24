@@ -42,6 +42,7 @@ builder.Services.AddAuthentication(options =>
 
 // Add JWT Service
 builder.Services.AddScoped<IJwtService, JwtService>();
+builder.Services.AddHttpClient<AiAnomalyService>();
 
 var app = builder.Build();
 
