@@ -12,7 +12,8 @@ namespace auth_service.Services
         public AiAnomalyService(HttpClient httpClient, ILogger<AiAnomalyService> logger)
         {
             _httpClient = httpClient;
-            _httpClient.BaseAddress = new Uri("http://localhost:8000"); // AI Service port
+            _httpClient.BaseAddress = new Uri("http://localhost:8000"); // Porti i AI Service (FastAPI)
+            _httpClient.Timeout = TimeSpan.FromSeconds(5);
             _logger = logger;
         }
 
@@ -24,37 +25,41 @@ namespace auth_service.Services
                 {
                     hour = loginEvent.LoginTime.Hour,
                     failedAttempts = loginEvent.FailedAttempts,
-                    newIp = 1,                    // Mund ta bësh dinamik më vonë
+                    newIp = loginEvent.IsNewIp ? 1 : 0,
                     successRate = loginEvent.Success ? 1.0 : 0.0,
-                    loginFrequency = 3,           // Mund ta bësh dinamik
-                    countryChanged = 0,
-                    impossibleTravel = 0,
-                    distanceKm = 0.0,
-                    hoursSinceLastLogin = 24.0,
-                    userAgentChanged = 0
+                    loginFrequency = loginEvent.LoginFrequency,
+                    countryChanged = loginEvent.CountryChanged ? 1 : 0,
+                    impossibleTravel = loginEvent.ImpossibleTravel ? 1 : 0,
+                    distanceKm = loginEvent.DistanceKm,
+                    hoursSinceLastLogin = loginEvent.HoursSinceLastLogin,
+                    userAgentChanged = loginEvent.UserAgentChanged ? 1 : 0
                 };
 
                 var content = new StringContent(
-                    JsonSerializer.Serialize(features), 
-                    Encoding.UTF8, 
+                    JsonSerializer.Serialize(features),
+                    Encoding.UTF8,
                     "application/json");
 
                 var response = await _httpClient.PostAsync("/score", content);
-                
+
                 if (!response.IsSuccessStatusCode)
-                    return new AiAnomalyResponse { Anomaly = false, RiskScore = 0 };
+                {
+                    _logger.LogWarning($"AI Service returned {response.StatusCode}");
+                    return new AiAnomalyResponse { Anomaly = false, RiskScore = 0, BlockAccount = false };
+                }
 
                 var result = await response.Content.ReadFromJsonAsync<AiAnomalyResponse>();
-                return result ?? new AiAnomalyResponse { Anomaly = false, RiskScore = 0 };
+                return result ?? new AiAnomalyResponse { Anomaly = false, RiskScore = 0, BlockAccount = false };
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error calling AI Service");
-                return new AiAnomalyResponse { Anomaly = false, RiskScore = 0 };
+                _logger.LogError(ex, "Error calling AI Anomaly Service");
+                return new AiAnomalyResponse { Anomaly = false, RiskScore = 0, BlockAccount = false };
             }
         }
     }
 
+    // Response model nga AI Service
     public class AiAnomalyResponse
     {
         public bool Anomaly { get; set; }
