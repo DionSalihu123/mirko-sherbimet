@@ -1,105 +1,68 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using Microsoft.EntityFrameworkCore;           
 using auth_service.Data;
 using auth_service.Models;
 using auth_service.DTOs;
+using auth_service.Services;
+using BCrypt.Net;
 
-namespace auth_service.Controllers;
-
-[ApiController]
-[Route("api/[controller]")]
-public class AuthController : ControllerBase
+namespace auth_service.Controllers
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IConfiguration _config;
-
-    public AuthController(ApplicationDbContext context, IConfiguration config)
+    [Route("api/[controller]")]
+    [ApiController]
+    public class AuthController : ControllerBase
     {
-        _context = context;
-        _config = config;
-    }
+        private readonly ApplicationDbContext _context;
+        private readonly IJwtService _jwtService;
 
-    [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterDto dto)
-    {
-        dto.Username = dto.Username?.Trim();
-        dto.Email = dto.Email?.Trim();
-        dto.Password = dto.Password?.Trim();
-
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var exists = await _context.Users.AnyAsync(u => u.Email == dto.Email);
-        if (exists)
-            return BadRequest("User already exists");
-
-        var user = new User
+        public AuthController(ApplicationDbContext context, IJwtService jwtService)
         {
-            Username = dto.Username,
-            Email = dto.Email,
-            PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password)
-        };
+            _context = context;
+            _jwtService = jwtService;
+        }
 
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
-
-        return Ok(new { message = "User registered successfully" });
-    }
-
-    [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginDto dto)
-    {
-        dto.Email = dto.Email?.Trim();
-        dto.Password = dto.Password?.Trim();
-
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
-        if (user == null)
-            return Unauthorized(new { message = "Invalid credentials" });
-
-        if (!BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
-            return Unauthorized(new { message = "Invalid credentials" });
-
-        var token = GenerateJwtToken(user);
-
-        return Ok(new
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            token,
-            expiresInMinutes = 30,
-            email = user.Email
-        });
-    }
+            if (await _context.Users.AnyAsync(u => u.Username == dto.Username))
+                return BadRequest("Username already exists");
 
-    [HttpGet("health")]
-    public IActionResult Health() => Ok(new { status = "ok", service = "auth-service" });
+            var user = new User
+            {
+                Username = dto.Username,
+                Email = dto.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password, 12),
+                CreatedAt = DateTime.UtcNow
+            };
 
-    private string GenerateJwtToken(User user)
-    {
-        var jwtSettings = _config.GetSection("Jwt");
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
-        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]!));
-        var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            return Ok(new { message = "User registered successfully" });
+        }
 
-        var claims = new[]
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
-            new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Email, user.Email)
-        };
+            var user = await _context.Users
+                .FirstOrDefaultAsync(u => u.Username == dto.Username);
 
-        var token = new JwtSecurityToken(
-            issuer: jwtSettings["Issuer"],
-            audience: jwtSettings["Audience"],
-            claims: claims,
-            expires: DateTime.UtcNow.AddMinutes(30),
-            signingCredentials: creds
-        );
+            if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash))
+                return Unauthorized("Invalid credentials");
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+            // Kontroll nëse është i bllokuar
+            if (user.IsBlocked && user.BlockedUntil > DateTime.UtcNow)
+                return BadRequest($"Account is blocked until {user.BlockedUntil}");
+
+            var token = _jwtService.GenerateToken(user);
+
+            return Ok(new 
+            { 
+                token = token,
+                userId = user.Id,
+                username = user.Username,
+                expiresIn = 30
+            });
+        }
     }
 }
