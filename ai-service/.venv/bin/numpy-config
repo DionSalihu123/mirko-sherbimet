@@ -1,4 +1,4 @@
-#!/home/dion/mikro_sherbimet/ai-service/.venv/bin/python3
+#!/home/bits_destroyer/mirko-sherbimet/ai-service/.venv/bin/python3
 # -*- coding: utf-8 -*-
 import re
 import sys

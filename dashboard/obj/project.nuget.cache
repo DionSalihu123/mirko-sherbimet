@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "/0aG6ztmgHo=",
+  "dgSpecHash": "gs0kXlY73kI=",
   "success": true,
-  "projectFilePath": "/home/dion/mikro_sherbimet/dashboard/dashboard.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/home/bits_destroyer/mirko-sherbimet/dashboard/dashboard.csproj",
+  "expectedPackageFiles": [
+    "/home/bits_destroyer/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.7/microsoft.aspnetcore.app.internal.assets.10.0.7.nupkg.sha512"
+  ],
   "logs": []
 }

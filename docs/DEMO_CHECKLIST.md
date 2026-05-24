@@ -43,6 +43,32 @@ Trego në UI:
 - bëj login
 - trego JWT token-in në ekran
 
+Testet e login-it (duhet të regjistrohen në screen recording dhe të vendosen screenshot-et në dokument):
+
+1. **Bad password**
+   - Bëj login me email të saktë dhe password të gabuar
+   - Duhet përgjigje **401 Unauthorized**
+   - Kodi që e mundëson: `auth-service/Controllers/AuthController.cs` te pjesa e `Login` ku kontrollohet `BCrypt.Net.BCrypt.Verify(dto.Password, user.PasswordHash)` dhe ndërpritet me `Unauthorized`
+   - Screenshot: `401_bad_password.png`
+
+2. **Empty fields**
+   - Bëj login me `{}` ose me email/password bosh
+   - Duhet përgjigje **400 Bad Request**
+   - Kodi që e mundëson: `auth-service/DTOs/LoginDto.cs` dhe `AuthController.cs` ku përdoret `ModelState.IsValid` pas `dto.Email = dto.Email?.Trim(); dto.Password = dto.Password?.Trim();`
+   - Screenshot: `400_empty_fields.png`
+
+3. **Correct credentials**
+   - Bëj login me email dhe password të saktë
+   - Duhet përgjigje **200 OK** dhe token JWT
+   - Kodi që e mundëson: `AuthController.cs` te `Login`, `GenerateJwtToken(user)` dhe `return Ok(new { token, expiresInMinutes = 30, email = user.Email })`
+   - Screenshot: `200_valid_login.png`
+
+4. **Whitespace-only**
+   - Bëj login me email dhe password që përmbajnë vetëm hapësira
+   - Duhet përgjigje **400 Bad Request**
+   - Kodi që e mundëson: `dto.Email = dto.Email?.Trim(); dto.Password = dto.Password?.Trim();` në `AuthController.cs` dhe validation në `LoginDto.cs`
+   - Screenshot: `400_whitespace_only.png`
+
 Screenshot-et:
 
 - bcrypt në kod

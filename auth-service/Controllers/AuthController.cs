@@ -26,6 +26,13 @@ public class AuthController : ControllerBase
     [HttpPost("register")]
     public async Task<IActionResult> Register(RegisterDto dto)
     {
+        dto.Username = dto.Username?.Trim();
+        dto.Email = dto.Email?.Trim();
+        dto.Password = dto.Password?.Trim();
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var exists = await _context.Users.AnyAsync(u => u.Email == dto.Email);
         if (exists)
             return BadRequest("User already exists");
@@ -46,6 +53,12 @@ public class AuthController : ControllerBase
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginDto dto)
     {
+        dto.Email = dto.Email?.Trim();
+        dto.Password = dto.Password?.Trim();
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
         var user = await _context.Users.FirstOrDefaultAsync(u => u.Email == dto.Email);
         if (user == null)
             return Unauthorized(new { message = "Invalid credentials" });

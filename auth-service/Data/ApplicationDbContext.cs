@@ -12,4 +12,15 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<User> Users => Set<User>();
     public DbSet<LoginEvent> LoginEvents { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<User>(eb =>
+        {
+            eb.Property(u => u.Email).IsRequired();
+            eb.HasIndex(u => u.Email).IsUnique();
+        });
+    }
 }

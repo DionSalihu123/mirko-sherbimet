@@ -8,96 +8,110 @@ info: Microsoft.Hosting.Lifetime[0]
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: /home/dion/mikro_sherbimet/auth-service
+      Content root path: /home/bits_destroyer/mirko-sherbimet/auth-service
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (71ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (28ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT EXISTS (
           SELECT 1
           FROM "Users" AS u
-          WHERE u."Email" = @__dto_Email_0)
+          WHERE u."Email" = @dto_Email)
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (21ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Double), @p7='?' (DbType = Double), @p8='?' (DbType = Int32), @p9='?', @p10='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Double), @p7='?' (DbType = Double), @p8='?' (DbType = Int32), @p9='?', @p10='?'], CommandType='Text', CommandTimeout='30']
       INSERT INTO "Users" ("BlockedUntil", "Email", "FailedLoginAttempts", "LastLoginAt", "LastLoginCountry", "LastLoginIp", "LastLoginLatitude", "LastLoginLongitude", "LoginCount", "PasswordHash", "Username")
       VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
       RETURNING "Id";
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (2ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
       FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
+      WHERE u."Email" = @dto_Email
       LIMIT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT EXISTS (
           SELECT 1
           FROM "Users" AS u
-          WHERE u."Email" = @__dto_Email_0)
+          WHERE u."Email" = @dto_Email)
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Double), @p7='?' (DbType = Double), @p8='?' (DbType = Int32), @p9='?', @p10='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Double), @p7='?' (DbType = Double), @p8='?' (DbType = Int32), @p9='?', @p10='?'], CommandType='Text', CommandTimeout='30']
       INSERT INTO "Users" ("BlockedUntil", "Email", "FailedLoginAttempts", "LastLoginAt", "LastLoginCountry", "LastLoginIp", "LastLoginLatitude", "LastLoginLongitude", "LoginCount", "PasswordHash", "Username")
       VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
       RETURNING "Id";
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (0ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
       FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
+      WHERE u."Email" = @dto_Email
       LIMIT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
-      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
-      FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
-      LIMIT 1
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (2ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT EXISTS (
           SELECT 1
           FROM "Users" AS u
-          WHERE u."Email" = @__dto_Email_0)
+          WHERE u."Email" = @dto_Email)
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (39ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Double), @p7='?' (DbType = Double), @p8='?' (DbType = Int32), @p9='?', @p10='?'], CommandType='Text', CommandTimeout='30']
-      INSERT INTO "Users" ("BlockedUntil", "Email", "FailedLoginAttempts", "LastLoginAt", "LastLoginCountry", "LastLoginIp", "LastLoginLatitude", "LastLoginLongitude", "LoginCount", "PasswordHash", "Username")
-      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
-      RETURNING "Id";
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (2ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
       FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
+      WHERE u."Email" = @dto_Email
       LIMIT 1
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (3ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
-      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
-      FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
-      LIMIT 1
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
-      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
-      FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
-      LIMIT 1
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
-      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
-      FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
-      LIMIT 1
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT EXISTS (
           SELECT 1
           FROM "Users" AS u
-          WHERE u."Email" = @__dto_Email_0)
+          WHERE u."Email" = @dto_Email)
 info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = DateTime), @p1='?', @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime), @p4='?', @p5='?', @p6='?' (DbType = Double), @p7='?' (DbType = Double), @p8='?' (DbType = Int32), @p9='?', @p10='?'], CommandType='Text', CommandTimeout='30']
-      INSERT INTO "Users" ("BlockedUntil", "Email", "FailedLoginAttempts", "LastLoginAt", "LastLoginCountry", "LastLoginIp", "LastLoginLatitude", "LastLoginLongitude", "LoginCount", "PasswordHash", "Username")
-      VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10)
-      RETURNING "Id";
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (1ms) [Parameters=[@__dto_Email_0='?'], CommandType='Text', CommandTimeout='30']
+      Executed DbCommand (2ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
       SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
       FROM "Users" AS u
-      WHERE u."Email" = @__dto_Email_0
+      WHERE u."Email" = @dto_Email
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "Users" AS u
+          WHERE u."Email" = @dto_Email)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
+      FROM "Users" AS u
+      WHERE u."Email" = @dto_Email
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
+      FROM "Users" AS u
+      WHERE u."Email" = @dto_Email
+      LIMIT 1
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "Users" AS u
+          WHERE u."Email" = @dto_Email)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "Users" AS u
+          WHERE u."Email" = @dto_Email)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "Users" AS u
+          WHERE u."Email" = @dto_Email)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (2ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT EXISTS (
+          SELECT 1
+          FROM "Users" AS u
+          WHERE u."Email" = @dto_Email)
+info: Microsoft.EntityFrameworkCore.Database.Command[20101]
+      Executed DbCommand (1ms) [Parameters=[@dto_Email='?'], CommandType='Text', CommandTimeout='30']
+      SELECT u."Id", u."BlockedUntil", u."Email", u."FailedLoginAttempts", u."LastLoginAt", u."LastLoginCountry", u."LastLoginIp", u."LastLoginLatitude", u."LastLoginLongitude", u."LoginCount", u."PasswordHash", u."Username"
+      FROM "Users" AS u
+      WHERE u."Email" = @dto_Email
       LIMIT 1
